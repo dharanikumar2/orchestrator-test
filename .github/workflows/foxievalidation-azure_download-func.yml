@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://foxie.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_f04c980828744b468f93491267316572 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_e865b7509f974914a28f93e0d2456ac4 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_8c7f1f58e3c34278b1615496cdc3355c }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_2c525560967340cebe8a0bbd86047923 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: foxie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f04c980828744b468f93491267316572 }}/release1:${{ github.sha }}
+        tags: foxie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8c7f1f58e3c34278b1615496cdc3355c }}/release3:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'download-func'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_49375494378e491bb9ca9f5e131c79c1 }}
-        images: 'foxie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f04c980828744b468f93491267316572 }}/release1:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5f28e396207b4d758882f93bd32a1069 }}
+        images: 'foxie.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8c7f1f58e3c34278b1615496cdc3355c }}/release3:${{ github.sha }}'
